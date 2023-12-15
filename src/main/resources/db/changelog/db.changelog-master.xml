@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+        http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+
+	<changeSet author="milospetrovic" id="cs_1">
+		<sql>
+			CREATE TABLE public.manufacturer (
+				id 					serial PRIMARY KEY NOT NULL,
+				name 				text UNIQUE NOT NULl,
+				country				text NOT NULL,
+			  	from_year	 		integer NOT NULL,
+			  	to_year			    integer
+			);
+						
+			CREATE TABLE public.model (
+				id 					serial PRIMARY KEY NOT NULL,
+				manufacturer_id		integer REFERENCES public.manufacturer (id), 
+				name 				text NOT NULl,
+				body_type		 	text NOT NULL,
+				fuel_type		    text NOT NULL,
+			  	power	 			integer NOT NULL
+			);
+						
+			CREATE TABLE public.car (
+				id 					serial PRIMARY KEY NOT NULL,
+				model_id		 	integer REFERENCES public.model (id),
+				vin 				varchar(17) NOT NULL,
+				mileage		        integer NOT NULL,
+				first_registration	integer NOT NULl,
+			  	price	 			double precision NOT NULL
+			);
+		</sql>
+	</changeSet>
+	
+	<changeSet author="milospetrovic" id="cs_2">
+		<sqlFile path="db/scripts/db.init.sql" splitStatements="true"/>
+	</changeSet>
+	
+</databaseChangeLog>
