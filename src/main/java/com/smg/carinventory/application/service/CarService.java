@@ -56,7 +56,7 @@ public class CarService {
 			throw new ModelNameIsEmptyException();
 		}
 		
-		return carRepository.findByModelManufacturerNameIgnoreCase(manufacturer);
+		return carRepository.findByModelManufacturerNameIgnoreCaseAndModelNameIgnoreCase(manufacturer, model);
 	}
 	
 	
