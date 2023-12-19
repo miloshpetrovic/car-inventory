@@ -213,7 +213,7 @@ GET /cars?manufacturer=volvo&model=s40
 
 ## TO DO 
 
-1. Improve testing (add more unit tests, introduce integration tests, utilize Testcontainers)
+1. Improve testing (add more unit tests, add more integration tests)
 2. Improve logging
 3. Improve chaching (currently, caching is inefficinet and  not optimal - same page is cached multiple times for different criteria)
 4. Improve resilience (analyze criterias and capabilities of operations to be retried - e.g. idempotence, retriable exceptions, etc)
