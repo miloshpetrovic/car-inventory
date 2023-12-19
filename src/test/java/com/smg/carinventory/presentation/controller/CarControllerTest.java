@@ -1,11 +1,11 @@
 package com.smg.carinventory.presentation.controller;
 
+import static com.smg.carinventory.presentation.controller.CarTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import java.util.Collections;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -13,37 +13,9 @@ import org.mockito.Mockito;
 import org.springframework.hateoas.Link;
 
 import com.smg.carinventory.application.service.CarService;
-import com.smg.carinventory.domain.model.Car;
-import com.smg.carinventory.domain.model.Manufacturer;
-import com.smg.carinventory.domain.model.Model;
-import com.smg.carinventory.presentation.dto.CarDTO;
-import com.smg.carinventory.presentation.dto.CarDataDTO;
 
 class CarControllerTest {
-	
-	private static Manufacturer volvo = new Manufacturer(1, "Volvo", "Sweden", 1928, null);
-	private static Manufacturer toyota = new Manufacturer(2, "Toyota", "Japan", 1928, null);
-			
-	private static Model s40 = new Model(1, "S40", "Hatchback", "Petrol", 105, volvo);
-	private static Model s60 = new Model(2, "S60", "Hatchback", "Petrol", 115, volvo);
-	private static Model s80 = new Model(3, "S80", "Sedan", "Petrol", 125, volvo);
-	private static Model corolla = new Model(4, "Corolla", "Sedan", "Petrol", 115, toyota);
-	private static Model yaris = new Model(5, "Yaris", "Hatchback", "Petrol", 105, volvo);
-	
-	private static Car volvoS40 = new Car(1, 110000, 2005, 15000.0, "erfdsd", s80);
-	private static Car volvoS60 = new Car(2, 220000, 2008, 10000.0, "faecadv", s40);
-	private static Car volvoS80 = new Car(3, 80000, 2015, 13000.0, "faevvxcv", s60);
-	private static Car toyotaCorolla = new Car(4, 140000, 2005, 8000.0, "gragare", corolla);
-	private static Car toyotaYaris = new Car(5, 110000, 2005, 5000.0, "vaewrhra", yaris);
-	private static Car toyotaYarisUpdated = new Car(5, 120000, 2008, 5000.0, "vaewrhra", yaris);
-	
-	private static CarDTO toyotaYarisDTO = new CarDTO("Toyota", "Yaris", 110000, 2005, 5000.0, "vaewrhra");
-	private static CarDTO toyotaYarisUpdatedDTO = new CarDTO("Toyota", "Yaris", 120000, 2008, 5000.0, "vaewrhra");
-	private static CarDataDTO toyotaYarisDataDTO = new CarDataDTO(5, 110000, 2005, 5000.0, "vaewrhra");
 
-	private List<Car> allCars = List.of(volvoS40, volvoS60, volvoS80, toyotaCorolla, toyotaYaris);
-	private List<Car> volvoCars = List.of(volvoS40, volvoS60, volvoS80);
-	private List<Car> volvoS60Cars = List.of(volvoS60);
 	
 	private CarService carService = Mockito.mock(CarService.class);
 	private CarController carController = new CarController(carService);
